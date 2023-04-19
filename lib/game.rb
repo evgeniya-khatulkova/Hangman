@@ -20,9 +20,8 @@ def winning
   puts
   puts "The right word #{YELLOW}#{@hidden_word.join("")}#{ENDCOLOR}"
 
-  puts "The Poor Guy is alive! Such a relief! You are a real hero. Do you want to play again?"
+  puts "The Poor Guy is alive! Such a relief! You are a real hero."
 
-  exit
 end
 
 def lost_game
@@ -31,6 +30,21 @@ def lost_game
   puts "You lost. Sorry, Mr. Poor Guy"
 
   puts "The hidden word was #{YELLOW}#{@hidden_word.join("")}#{ENDCOLOR}."
+end
+
+def play_again(content)
+  puts "Do you want to play again? Y/n?"
+  answer = gets.chomp.downcase
+  until answer == "yes" || answer == "no"
+    puts "Yes or no?"
+    answer = gets.chomp.downcase
+  end
+  if answer == "yes"
+    hidden_word = set_hidden_word(content)
+    Game.new(hidden_word).start_hidding
+  elsif answer == "no"
+    exit
+  end
 end
 
 def start_hidding

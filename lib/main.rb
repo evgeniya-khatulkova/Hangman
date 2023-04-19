@@ -16,3 +16,4 @@ hidden_word = set_hidden_word(content)
 hello = Game.new(hidden_word)
 
 hello.start_hidding
+hello.play_again(content)
