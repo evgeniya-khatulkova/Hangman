@@ -74,6 +74,7 @@ elsif @wrong_letters.size == 7
     puts "|"
     puts "|"
   elsif @wrong_letters.size == 8
+    puts
     puts "-----"
     puts "|    |"
     puts "|    |"
