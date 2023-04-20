@@ -51,8 +51,11 @@ def save_it
   Dir.mkdir('saved_game') unless Dir.exist?('saved_game')
   puts "Give a name to the saving"
   file_name = "saved_game/#{gets.chomp}.rb"
-  File.open(file_name, "w") do |file|
-    file.puts self
+  # File.open(file_name, "w") do |file|
+  #   file.puts self
+  # end
+  File.open(file_name, "wb") do |file|
+    file.write(Marshal.dump(self))
   end
   exit
 end
