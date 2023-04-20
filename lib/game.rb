@@ -47,9 +47,19 @@ def play_again(content)
   end
 end
 
+def save_it
+  Dir.mkdir('saved_game') unless Dir.exist?('saved_game')
+  puts "Give a name to the saving"
+  file_name = "saved_game/#{gets.chomp}.rb"
+  File.open(file_name, "w") do |file|
+    file.puts self
+  end
+  exit
+end
+
 def start_hidding
   @hidden_word.each{|letter|  " _ "}
-  puts "Nice to see you! We will play a hangman game. You need to guess the hidden word before the Poor Guy will be hanged. You can make only 8 mistakes. Good luck to you and to the Poor Guy"
+  puts "Nice to see you! We will play a hangman game. You need to guess the hidden word before the Poor Guy will be hanged. You can make only 8 mistakes.  Remember that you can save your game anytime by typing 'save'. Good luck to you and to the Poor Guy"
   puts "Word you need to guess:"
   @hidden_word.length.times { print "#{BLUE} _ #{ENDCOLOR}"}
   self.checking_guess
@@ -63,6 +73,9 @@ def checking_guess
     puts
     puts "Enter letter"
     letter = gets.chomp.downcase
+
+    self.save_it if letter == "save"
+
     @hidden_word.include?(letter) ? @right_letters<<letter : @wrong_letters<<letter
 
     puts "#{8 - @wrong_letters.length} attempts left"
